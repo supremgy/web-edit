@@ -1,9 +1,11 @@
-@import "sanitize.css/sanitize.css";
-@import "sanitize.css/forms.css";
-@import "sanitize.css/assets.css";
-@import "sanitize.css/typography.css";
-@import "open-color/open-color.css";
-
+/* @import 'sanitize.css/sanitize.css';
+@import 'sanitize.css/forms.css';
+@import 'sanitize.css/assets.css';
+@import 'sanitize.css/typography.css';
+@import 'open-color/open-color.css'; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   color: var(--oc-gray-8);
 }

@@ -1,12 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  Container,
-  Header,
-  Input,
-  LoginProps,
-  Title,
-} from './LoginForm';
+import { Button, Container, Input, LoginProps, Title } from './LoginForm';
 import { useJoin } from '@/hooks/useJoin';
 import { useForm } from 'react-hook-form';
 
@@ -27,9 +20,9 @@ const JoinForm = () => {
   };
   return (
     <>
-      <Header>
-        <h1>Programmers Note Editor</h1>
-      </Header>
+      <header className='p-5'>
+        <strong className='text-2xl'>Programmers Note Editor</strong>
+      </header>
       <Container onSubmit={handleSubmit(onSubmit)}>
         <Title>회원가입</Title>
         <Input
@@ -61,8 +54,11 @@ const JoinForm = () => {
         )}
 
         <Button>회원가입</Button>
-        <p>
-          계정이 이미 있으신가요? <Link to='/login'>로그인하기</Link>
+        <p className='mt-6'>
+          계정이 이미 있으신가요?
+          <Link to='/login' className='text-sky-600 hover:underline'>
+            로그인하기
+          </Link>
         </p>
       </Container>
     </>

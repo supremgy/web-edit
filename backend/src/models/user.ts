@@ -27,7 +27,7 @@ export const join = async (req: Request, res: Response) => {
     if (err && err.code === 'ER_DUP_ENTRY') {
       return res
         .status(StatusCodes.CONFLICT)
-        .json({ message: '이미 존재하는 회원입니다.' });
+        .json({ message: '이미 가입된 이메일입니다.' });
     }
     if (results.affectedRows) {
       return res.status(StatusCodes.CREATED).json(results);

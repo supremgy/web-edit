@@ -18,9 +18,10 @@ const LoginForm = () => {
   };
   return (
     <>
-      <Header>
-        <h1>Programmers Note Editor</h1>
-      </Header>
+      <header className='p-5'>
+        <strong className='text-2xl'>Programmers Note Editor</strong>
+      </header>
+
       <Container onSubmit={handleSubmit(onSubmit)}>
         <Title>로그인</Title>
         <Input
@@ -38,19 +39,17 @@ const LoginForm = () => {
           <p className='error-text'>{errors.password.message}</p>
         )}
         <Button>로그인</Button>
-        <p>
-          계정이 없으신가요? <Link to='/join'>가입하기</Link>
+        <p className='mt-6'>
+          계정이 없으신가요?{' '}
+          <Link to='/join' className='text-sky-600 hover:underline'>
+            가입하기
+          </Link>
         </p>
       </Container>
     </>
   );
 };
-export const Header = styled.header`
-  position: absolute;
-  font-size: 12px;
-  top: 20px;
-  left: 50px;
-`;
+
 export const Container = styled.form`
   max-width: 400px;
   margin: 60px auto;
