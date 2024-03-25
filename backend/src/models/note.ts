@@ -36,4 +36,19 @@ export const getDetail = (req: Request, res: Response) => {};
 
 export const updateContent = (req: Request, res: Response) => {};
 
-export const deleteContent = (req: Request, res: Response) => {};
+export const deleteContent = (req: Request, res: Response) => {
+  const userId = parseInt(req.params.id);
+  const sql = 'DELETE FROM notes WHERE id = ?';
+  conn.query(sql, userId, (err, results: ResultSetHeader) => {
+    if (err) {
+      console.error('데이터베이스 오류:', err);
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: '내용을 생성하는 중에 오류가 발생했습니다.' });
+    }
+
+    if (results.affectedRows === 1) {
+      return res.status(StatusCodes.OK).json(results);
+    }
+  });
+};

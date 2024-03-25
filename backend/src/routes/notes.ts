@@ -13,8 +13,8 @@ router.use(express.json());
 
 router.post('/', authenticateUser, createContent);
 router.get('/', authenticateUser, getList);
-router.get('/:id', getDetail);
-router.put('/:id', updateContent);
-router.delete('/:id', deleteContent);
+router.get('/:id', authenticateUser, getDetail);
+router.put('/:id', authenticateUser, updateContent);
+router.delete('/:id', authenticateUser, deleteContent);
 
 export default router;
