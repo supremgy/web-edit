@@ -30,7 +30,23 @@ export const createContent = (req: Request, res: Response) => {
   });
 };
 
-export const getList = (req: Request, res: Response) => {};
+export const getList = (req: Request, res: Response) => {
+  const userId = req.user.userId;
+  console.log(userId);
+
+  const sql = 'SELECT * FROM notes WHERE user_id = ?';
+  conn.query(sql, userId, (err, results: ResultSetHeader[]) => {
+    if (err) {
+      console.error('데이터베이스 오류:', err);
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: '내용을 생성하는 중에 오류가 발생했습니다.' });
+    }
+    if (results) {
+      return res.status(StatusCodes.OK).json(results);
+    }
+  });
+};
 
 export const getDetail = (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
@@ -42,7 +58,6 @@ export const getDetail = (req: Request, res: Response) => {
         .status(StatusCodes.INTERNAL_SERVER_ERROR)
         .json({ message: '내용을 생성하는 중에 오류가 발생했습니다.' });
     }
-    console.log(results);
     if (results) {
       return res.status(StatusCodes.OK).json(results[0]);
     }
