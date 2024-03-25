@@ -1,13 +1,20 @@
 import express, { Router, Request, Response } from 'express';
-import { User as IUser } from '../models/user';
-import { join, login } from '../controller/user';
+import { join, login, logout } from '../models/user';
+import { authenticateUser } from '../middlewares/authentication';
+import { StatusCodes } from 'http-status-codes';
 const router: Router = express.Router();
 
 router.post('/login', login);
 
-router.post('/logout');
+router.post('/logout', logout);
 
-router.get('/me');
+router.get(
+  '/users/me',
+  authenticateUser,
+  async (req: Request, res: Response) => {
+    return res.status(StatusCodes.OK).json(req.user);
+  }
+);
 
 router.post('/users', join);
 

@@ -1,19 +1,20 @@
-import express, { Router, Request, Response } from 'express';
-import { CustomRequest, authenticateUser } from '../middlewares/authentication';
-import { StatusCodes } from 'http-status-codes';
+import express, { Router } from 'express';
+import { authenticateUser } from '../middlewares/authentication';
+import {
+  createContent,
+  deleteContent,
+  getDetail,
+  getList,
+  updateContent,
+} from '../models/note';
 
 const router: Router = express.Router();
 router.use(express.json());
 
-// router.get('/', authenticateUser, async (req: CustomRequest, res: Response) => {
-//   if (req.user) {
-//     console.log(req.user);
-//     return res.status(StatusCodes.ACCEPTED);
-//   }
-// });
-router.get('/:id');
-router.post('/');
-router.put('/:id');
-router.delete('/:id');
+router.post('/', authenticateUser, createContent);
+router.get('/', authenticateUser, getList);
+router.get('/:id', getDetail);
+router.put('/:id', updateContent);
+router.delete('/:id', deleteContent);
 
 export default router;

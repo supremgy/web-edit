@@ -2,15 +2,8 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-export interface CustomRequest extends Request {
-  user: JwtPayload;
-}
 export const authenticateUser = //
-  async (
-    req: CustomRequest,
-    res: Response,
-    next: NextFunction
-  ): Promise<void> => {
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const accessToken = req.cookies['access-token'];
     console.log(accessToken);
 
@@ -34,6 +27,4 @@ export const authenticateUser = //
         .status(StatusCodes.UNAUTHORIZED)
         .json({ message: '토큰이 유효하지 않습니다.' });
     }
-
-    next();
   };
