@@ -1,6 +1,7 @@
 import Detail from './Detail';
 import { FaUser, FaRegSquarePlus, FaRegFileLines } from 'react-icons/fa6';
 import { FiLogOut } from 'react-icons/fi';
+import SidebarButton from '../SidebarButton';
 export interface NoteProps {
   id: number;
   title: string;
@@ -440,24 +441,15 @@ const Index = () => {
     <div className='flex flex-row h-full w-full max-w-screen-2xl mx-auto justify-center'>
       <div className=' basis-1/6 flex flex-col fixed-element w-30 bg-[#e6e6ea]'>
         <div className=' flex items-center p-4 text-xl gap-2'>
-          <FaUser className='flex-none' />
-          <strong className='flex-1'>sample@exmaple.com</strong>
+          <FaUser />
+          <p className='font-semibold'>sample@exmaple.com</p>
         </div>
-        <button className=' flex items-center px-4 py-2 text-base  gap-2 font-semibold text-gray-500'>
-          <FiLogOut />
-          <p>로그아웃</p>
-        </button>
-        <button className=' flex items-center px-4 py-2 text-base gap-2 font-semibold text-gray-500'>
-          <FaRegSquarePlus />
-          노트 생성
-        </button>
+        <SidebarButton type='로그아웃' icon={<FiLogOut />} />
+        <SidebarButton type='노트 생성' icon={<FaRegSquarePlus />} />
         <div className=' font-semibold text-gray-500'>
           <p className='pt-3 pl-3'>노트 목록</p>
           {noteList.map((item) => (
-            <button className=' flex items-center px-4 py-2 text-base gap-2 font-semibold text-gray-500'>
-              <FaRegFileLines />
-              <p>{item.title}</p>
-            </button>
+            <SidebarButton type={item.title} icon={<FaRegFileLines />} />
           ))}
         </div>
       </div>
