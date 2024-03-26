@@ -1,13 +1,11 @@
-import styled from 'styled-components';
-
 const NoteTitleInput = () => {
   return (
-    <div>
-      <h1>NoteTitleInput</h1>
-    </div>
+    <input
+      type='text'
+      placeholder='제목 없음'
+      className='focus:outline-none text-4xl font-semibold w-full'
+    />
   );
 };
-
-const NoteTitleInputStyle = styled.div``;
 
 export default NoteTitleInput;

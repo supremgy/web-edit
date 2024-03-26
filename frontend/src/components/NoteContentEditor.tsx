@@ -1,13 +1,26 @@
-import styled from 'styled-components';
-
+import Placeholder from '@tiptap/extension-placeholder';
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 const NoteContentEditor = () => {
-  return (
-    <div>
-      <h1>NoteContentEditor</h1>
-    </div>
-  );
+  const extensions = [
+    StarterKit,
+    Placeholder.configure({
+      placeholder: '내용을 입력하세요.',
+      emptyNodeClass:
+        'first:before:text-gray-400 first:before:float-left first:before:content-[attr(data-placeholder)] first:before:pointer-events-none',
+    }),
+  ];
+  const editor = useEditor({
+    extensions,
+    content: '',
+    editorProps: {
+      attributes: {
+        class:
+          'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl px-6 mx-auto focus:outline-none',
+      },
+    },
+  });
+  return <>{editor && <EditorContent editor={editor} />}</>;
 };
-
-const NoteContentEditorStyle = styled.div``;
 
 export default NoteContentEditor;
