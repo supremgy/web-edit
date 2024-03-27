@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import InputBoxForm from './InputBoxForm';
+import { JoinFormProps } from './JoinForm';
 export interface LoginProps {
   email: string;
   password: string;
@@ -13,11 +14,21 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginProps>();
+    getValues,
+    watch,
+  } = useForm<JoinFormProps>();
   const { userLogin } = useLogin();
-  const onSubmit = (data: LoginProps) => {
-    userLogin(data);
+  const onSubmit = (data: JoinFormProps) => {
+    console.log(data);
+
+    // userLogin(data);
   };
+  // const [text, setText] = useState('');
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   // register('text', { required: true });
+  //   setText(event.target.value);
+  // };
+  watch(['email', 'password']);
 
   return (
     <>
@@ -31,8 +42,18 @@ const LoginForm = () => {
       >
         <h2 className='text-5xl font-bold text-center mb-10'>로그인</h2>
         <div className='flex flex-col gap-3'>
-          <InputBoxForm type='email' />
-          <InputBoxForm type='password' />
+          <InputBoxForm
+            type='email'
+            register={register}
+            getValues={getValues}
+            errors={errors.email}
+          />
+          <InputBoxForm
+            type='password'
+            register={register}
+            getValues={getValues}
+            errors={errors.password}
+          />
         </div>
 
         <Button>로그인</Button>
