@@ -1,7 +1,8 @@
 import Detail from './Detail';
-import { FaUser, FaRegSquarePlus, FaRegFileLines } from 'react-icons/fa6';
+import { FaUser, FaRegSquarePlus } from 'react-icons/fa6';
 import { FiLogOut } from 'react-icons/fi';
 import SidebarButton from '../SidebarButton';
+import NoteList from '@/components/NoteList';
 export interface NoteProps {
   id: number;
   title: string;
@@ -446,12 +447,7 @@ const Index = () => {
         </div>
         <SidebarButton type='로그아웃' icon={<FiLogOut />} />
         <SidebarButton type='노트 생성' icon={<FaRegSquarePlus />} />
-        <div className=' font-semibold text-gray-500'>
-          <p className='pt-3 pl-3'>노트 목록</p>
-          {noteList.map((item) => (
-            <SidebarButton type={item.title} icon={<FaRegFileLines />} />
-          ))}
-        </div>
+        <NoteList list={noteList} />
       </div>
 
       <div className='basis-5/6 scrollable-element overflow-y-auto'>
