@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Button, Container, Input, LoginProps, Title } from './LoginForm';
+import { Button, LoginProps } from './LoginForm';
 import { useJoin } from '@/hooks/useJoin';
 import { useForm } from 'react-hook-form';
+import InputBoxForm from './InputBoxForm';
 
 export interface JoinFormProps extends LoginProps {
   checkPassword: string;
@@ -23,44 +24,22 @@ const JoinForm = () => {
       <header className='p-5'>
         <strong className='text-2xl'>Programmers Note Editor</strong>
       </header>
-      <Container onSubmit={handleSubmit(onSubmit)}>
-        <Title>회원가입</Title>
-        <Input
-          placeholder='이메일'
-          type='email'
-          {...register('email', { required: '이메일을 입력해주세요' })}
-        />
-        {errors.email && <p className='error-text'>{errors.email.message}</p>}
-        <Input
-          placeholder='비밀번호'
-          type='password'
-          {...register('password', { required: '비밀번호를 입력해주세요' })}
-        />
-        {errors.password && (
-          <p className='error-text'>{errors.password.message}</p>
-        )}
-        <Input
-          placeholder='비밀번호 확인'
-          type='password'
-          {...register('checkPassword', {
-            required: '비밀번호를 입력해주세요.',
-            validate: (value) =>
-              value === getValues('password') ||
-              '비밀번호가 일치하지 않습니다.',
-          })}
-        />
-        {errors.checkPassword && (
-          <p className='error-text'>{errors.checkPassword.message}</p>
-        )}
-
+      <form
+        className='flex flex-col mx-auto max-w-sm my-20 gap-4'
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h2 className='text-5xl font-bold text-center mb-10'>회원가입</h2>
+        <InputBoxForm type='email' />
+        <InputBoxForm type='password' />
+        <InputBoxForm type='password' />
         <Button>회원가입</Button>
-        <p className='mt-6'>
+        <p className='mt-6 text-center'>
           계정이 이미 있으신가요?
           <Link to='/login' className='text-sky-600 hover:underline'>
             로그인하기
           </Link>
         </p>
-      </Container>
+      </form>
     </>
   );
 };
