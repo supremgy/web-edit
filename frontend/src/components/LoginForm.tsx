@@ -19,9 +19,7 @@ const LoginForm = () => {
   } = useForm<JoinFormProps>();
   const { userLogin } = useLogin();
   const onSubmit = (data: JoinFormProps) => {
-    console.log(data);
-
-    // userLogin(data);
+    userLogin(data);
   };
   watch(['email', 'password']);
 

@@ -18,8 +18,7 @@ const JoinForm = () => {
     watch,
   } = useForm<JoinFormProps>();
   const onSubmit = (data: LoginProps) => {
-    console.log(data);
-    // userJoin(data);
+    userJoin(data);
   };
   watch(['email', 'password', 'checkPassword']);
   return (
