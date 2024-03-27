@@ -7,7 +7,11 @@ const NoteList = ({ list }: { list: NoteProps[] }) => {
     <div className=' font-semibold text-gray-500'>
       <p className='pt-3 pl-3 pb-2'>노트 목록</p>
       {list.map((item) => (
-        <SidebarButton type={item.title} icon={<FaRegFileLines />} />
+        <SidebarButton
+          onClick={() => {}}
+          type={item.title}
+          icon={<FaRegFileLines />}
+        />
       ))}
     </div>
   );

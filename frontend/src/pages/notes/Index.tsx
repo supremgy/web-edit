@@ -3,6 +3,8 @@ import { FaUser, FaRegSquarePlus } from 'react-icons/fa6';
 import { FiLogOut } from 'react-icons/fi';
 import SidebarButton from '../SidebarButton';
 import NoteList from '@/components/NoteList';
+import { useLogout } from '@/hooks/useLogout';
+import useCurrentUser from '@/hooks/useCurrentUser';
 export interface NoteProps {
   id: number;
   title: string;
@@ -437,16 +439,28 @@ let noteList: NoteProps[] = [
     updatedAt: '2024-03-25 12:16:53',
   },
 ];
+
 const Index = () => {
+  const user = useCurrentUser();
+  const { userLogout } = useLogout();
+
   return (
     <div className='flex flex-row h-full w-full max-w-screen-2xl mx-auto justify-center'>
       <div className=' basis-1/6 flex flex-col fixed-element w-30 bg-[#e6e6ea]'>
         <div className=' flex items-center p-4 text-xl gap-2'>
           <FaUser />
-          <p className='font-semibold'>sample@exmaple.com</p>
+          <p className='font-semibold'>{user?.email}</p>
         </div>
-        <SidebarButton type='로그아웃' icon={<FiLogOut />} />
-        <SidebarButton type='노트 생성' icon={<FaRegSquarePlus />} />
+        <SidebarButton
+          onClick={userLogout}
+          type='로그아웃'
+          icon={<FiLogOut />}
+        />
+        <SidebarButton
+          onClick={() => {}}
+          type='노트 생성'
+          icon={<FaRegSquarePlus />}
+        />
         <NoteList list={noteList} />
       </div>
 
