@@ -23,11 +23,6 @@ const LoginForm = () => {
 
     // userLogin(data);
   };
-  // const [text, setText] = useState('');
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   // register('text', { required: true });
-  //   setText(event.target.value);
-  // };
   watch(['email', 'password']);
 
   return (

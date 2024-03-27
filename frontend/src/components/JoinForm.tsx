@@ -50,6 +50,11 @@ const JoinForm = () => {
           getValues={getValues}
           errors={errors.checkPassword}
         />
+        {getValues('password') !== getValues('checkPassword') && (
+          <p className='text-red-500 pl-3 -translate-y-5'>
+            Passwords do not match
+          </p>
+        )}
         <Button>회원가입</Button>
         <p className='mt-6 text-center'>
           계정이 이미 있으신가요?
