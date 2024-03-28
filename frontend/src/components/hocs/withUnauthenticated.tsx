@@ -1,13 +1,15 @@
 import { useAuthStore } from '@/store/authStore';
-import React from 'react';
-import { Navigate, redirect } from 'react-router-dom';
-interface Props {
+import React, { ComponentType } from 'react';
+import { Navigate } from 'react-router-dom';
+export interface RedirectChildrenProps {
   children: React.ReactNode;
 }
-const WithUnauthenticated = ({ children }: Props) => {
+const WithUnauthenticated: React.FC<{ component: ComponentType }> = ({
+  component: Component,
+}) => {
   const { isLoggedIn } = useAuthStore();
 
-  return isLoggedIn ? <Navigate to='/notes' /> : <>{children}</>;
+  return isLoggedIn ? <Navigate to='/notes' /> : <Component />;
 };
 
 export default WithUnauthenticated;

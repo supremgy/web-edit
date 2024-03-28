@@ -16,8 +16,6 @@ interface Props {
   errors: FieldError | undefined;
 }
 const InputBoxForm = ({ type, register, getValues, errors }: Props) => {
-  console.log(getValues(type));
-
   return (
     <>
       <div className='relative flex items-center my-2'>
