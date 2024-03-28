@@ -57,7 +57,7 @@ const JoinForm = () => {
         <Button>회원가입</Button>
         <p className='mt-6 text-center'>
           계정이 이미 있으신가요?
-          <Link to='/login' className='text-sky-600 hover:underline'>
+          <Link to='/login' className='px-2 text-sky-600 hover:underline'>
             로그인하기
           </Link>
         </p>

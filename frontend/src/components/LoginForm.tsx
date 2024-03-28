@@ -52,7 +52,7 @@ const LoginForm = () => {
         <Button>로그인</Button>
         <p className='mt-6 text-center'>
           계정이 없으신가요?
-          <Link to='/join' className='text-sky-600 hover:underline'>
+          <Link to='/join' className='px-2 text-sky-600 hover:underline'>
             가입하기
           </Link>
         </p>
