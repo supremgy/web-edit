@@ -16,6 +16,8 @@ interface Props {
   errors: FieldError | undefined;
 }
 const InputBoxForm = ({ type, register, getValues, errors }: Props) => {
+  console.log(getValues(type));
+
   return (
     <>
       <div className='relative flex items-center my-2'>
@@ -29,9 +31,10 @@ const InputBoxForm = ({ type, register, getValues, errors }: Props) => {
         />
         <label
           htmlFor={type}
-          className={`absolute duration-200 uppercase left-2 text-lg peer-focus:-translate-y-8 peer-focus:text-sm text-zinc-500 ${
-            getValues(type) &&
-            '-translate-y-8 text-sm text-blue-600 peer-focus:text-sm'
+          className={`absolute duration-200 uppercase left-2 text-lg peer-focus:-translate-y-8 peer-focus:text-sm  ${
+            getValues(type)
+              ? '-translate-y-8 text-sm text-blue-600'
+              : 'text-zinc-500'
           }`}
         >
           {type}
