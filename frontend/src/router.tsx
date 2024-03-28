@@ -1,26 +1,23 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { IndexPage } from './pages/Index';
 import Login from './pages/Login';
 import Join from './pages/Join';
+import IndexPage from './pages/Index';
 import NoteIndex from './pages/notes/Index';
-import WithUnauthenticated from './components/hocs/WithUnauthenticated';
-import WithAuthenticatedUser from './components/hocs/WithAuthenticatedUser';
-
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <WithUnauthenticated component={IndexPage} />,
+    element: <IndexPage />,
   },
   {
     path: '/login',
-    element: <WithUnauthenticated component={Login} />,
+    element: <Login />,
   },
   {
     path: '/join',
-    element: <WithUnauthenticated component={Join} />,
+    element: <Join />,
   },
   {
     path: '/notes',
-    element: <WithAuthenticatedUser component={NoteIndex} />,
+    element: <NoteIndex />,
   },
 ]);
