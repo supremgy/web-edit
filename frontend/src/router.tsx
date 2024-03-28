@@ -3,6 +3,7 @@ import Login from './pages/Login';
 import Join from './pages/Join';
 import IndexPage from './pages/Index';
 import NoteIndex from './pages/notes/Index';
+
 export const router = createBrowserRouter([
   {
     path: '/',

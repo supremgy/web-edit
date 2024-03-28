@@ -4,7 +4,8 @@ import { FiLogOut } from 'react-icons/fi';
 import SidebarButton from '../SidebarButton';
 import NoteList from '@/components/NoteList';
 import { useLogout } from '@/hooks/useLogout';
-import useCurrentUser from '@/hooks/useCurrentUser';
+import { User } from '@/apis/user';
+import withAuthenticatedUser from '@/components/hocs/withAuthenticatedUser';
 export interface NoteProps {
   id: number;
   title: string;
@@ -439,9 +440,11 @@ let noteList: NoteProps[] = [
     updatedAt: '2024-03-25 12:16:53',
   },
 ];
+interface NoteIndexProps {
+  user: User;
+}
 
-const Index = () => {
-  const user = useCurrentUser();
+const Index: React.FC<NoteIndexProps> = ({ user }) => {
   const { userLogout } = useLogout();
 
   return (
@@ -471,4 +474,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default withAuthenticatedUser(Index);
