@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import { useAuthStore } from '@/store/authStore';
+import React from 'react';
+import { Navigate, redirect } from 'react-router-dom';
+interface Props {
+  children: React.ReactNode;
+}
+const WithUnauthenticated = ({ children }: Props) => {
+  const { isLoggedIn } = useAuthStore();
 
-const withUnauthenticated = () => {
-  return (
-    <div>
-      <h1>withUnauthenticated</h1>
-    </div>
-  );
+  return isLoggedIn ? <Navigate to='/notes' /> : <>{children}</>;
 };
 
-const withUnauthenticatedStyle = styled.div``;
-
-export default withUnauthenticated;
+export default WithUnauthenticated;

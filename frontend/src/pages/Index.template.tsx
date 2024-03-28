@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ReactComponent as MussgImage } from '@/assets/mussg.svg';
-import { useAuthStore } from '@/store/authStore';
 
 export const IndexTemplate: React.FC = () => {
-  const { isLoggedIn } = useAuthStore();
   return (
     <div className='px-24 py-72 text-center flex flex-col items-center'>
       <MussgImage />
@@ -20,7 +18,7 @@ export const IndexTemplate: React.FC = () => {
       </p>
 
       <Link
-        to={isLoggedIn ? '/notes' : '/login'}
+        to={'/login'}
         className='inline-block bg-gray-900 text-white rounded-md px-4 py-2 text-base  transition duration-300 ease-in-out hover:bg-gray-800 focus:bg-gray-800 active:bg-gray-700'
       >
         무료로 시작하기
