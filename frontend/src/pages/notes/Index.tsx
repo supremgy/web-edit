@@ -440,11 +440,11 @@ let noteList: NoteProps[] = [
     updatedAt: '2024-03-25 12:16:53',
   },
 ];
-interface NoteIndexProps {
+interface IndexProps {
   user: User;
 }
 
-const Index: React.FC<NoteIndexProps> = ({ user }) => {
+const Index = ({ email }: User) => {
   const { userLogout } = useLogout();
 
   return (
@@ -452,7 +452,7 @@ const Index: React.FC<NoteIndexProps> = ({ user }) => {
       <div className=' basis-1/6 flex flex-col fixed-element w-30 bg-[#e6e6ea]'>
         <div className=' flex items-center p-4 text-xl gap-2'>
           <FaUser />
-          <p className='font-semibold'>{user?.email}</p>
+          <p className='font-semibold'>{email}</p>
         </div>
         <SidebarButton
           onClick={userLogout}
