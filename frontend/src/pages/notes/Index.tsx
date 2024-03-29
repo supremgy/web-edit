@@ -5,7 +5,8 @@ import SidebarButton from '../SidebarButton';
 import NoteList from '@/components/NoteList';
 import { useLogout } from '@/hooks/useLogout';
 import { User } from '@/apis/user';
-import withAuthenticatedUser from '@/components/hocs/withAuthenticatedUser';
+import { NotesIndexTemplate } from './Index.template';
+import { withAuthenticatedUser } from '@/components/hocs/withAuthenticatedUser';
 export interface NoteProps {
   id: number;
   title: string;
@@ -444,34 +445,15 @@ interface IndexProps {
   user: User;
 }
 
-const Index = ({ email }: User) => {
+export const NotesIndexPage = withAuthenticatedUser((props) => {
   const { userLogout } = useLogout();
 
   return (
-    <div className='flex flex-row h-full w-full max-w-screen-2xl mx-auto justify-center'>
-      <div className=' basis-1/6 flex flex-col fixed-element w-30 bg-[#e6e6ea]'>
-        <div className=' flex items-center p-4 text-xl gap-2'>
-          <FaUser />
-          <p className='font-semibold'>{email}</p>
-        </div>
-        <SidebarButton
-          onClick={userLogout}
-          type='로그아웃'
-          icon={<FiLogOut />}
-        />
-        <SidebarButton
-          onClick={() => {}}
-          type='노트 생성'
-          icon={<FaRegSquarePlus />}
-        />
-        <NoteList list={noteList} />
-      </div>
-
-      <div className='basis-5/6 scrollable-element overflow-y-auto'>
-        <Detail />
-      </div>
-    </div>
+    <NotesIndexTemplate
+      notes={noteList}
+      currentUserMail={props.currentUser.email}
+      onClickCreateNote={() => {}}
+      onClickLogout={userLogout}
+    />
   );
-};
-
-export default withAuthenticatedUser(Index);
+});
