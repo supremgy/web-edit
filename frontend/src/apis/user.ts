@@ -9,9 +9,9 @@ export interface User {
   userId: number;
 }
 export const fetchCurretUser = async () => {
-  const response = await httpClient.get<User>('/users/me');
+  const { data } = await httpClient.get<User>('/users/me');
 
-  return response.data;
+  return data;
 };
 
 interface LoginResponse {
