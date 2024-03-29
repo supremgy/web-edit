@@ -1,8 +1,6 @@
-import withUnauthenticated from '@/components/hocs/withUnauthenticated';
+import { withUnauthenticated } from '@/components/hocs/withUnauthenticated';
 import { IndexTemplate } from './Index.template';
 
-const IndexPage = () => {
+export const IndexPage = withUnauthenticated(() => {
   return <IndexTemplate />;
-};
-
-export default withUnauthenticated(IndexPage);
+});

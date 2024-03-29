@@ -1,22 +1,13 @@
 import { useAuthStore } from '@/store/authStore';
-import { ComponentType, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { ComponentType } from 'react';
+import { Navigate } from 'react-router-dom';
 
-interface WrappedProps {}
-
-const withUnauthenticated = <P extends WrappedProps>(
-  WrappedComponent: ComponentType<P>
-) => {
-  const Component = (props: P) => {
+export const withUnauthenticated = (Component: ComponentType): React.FC => {
+  return () => {
     const { isLoggedIn } = useAuthStore();
-    const navigate = useNavigate();
-    useEffect(() => {
-      if (isLoggedIn) {
-        navigate('/notes');
-      }
-    }, [isLoggedIn, navigate]);
-    return <WrappedComponent {...props} />;
+    if (isLoggedIn) {
+      return <Navigate to='/notes' />;
+    }
+    return <Component />;
   };
-  return Component;
 };
-export default withUnauthenticated;

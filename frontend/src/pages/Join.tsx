@@ -1,4 +1,5 @@
 import JoinForm from '@/components/JoinForm';
-export const JoinPage = () => {
+import { withUnauthenticated } from '@/components/hocs/withUnauthenticated';
+export const JoinPage = withUnauthenticated(() => {
   return <JoinForm />;
-};
+});

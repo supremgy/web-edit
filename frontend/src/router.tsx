@@ -3,10 +3,10 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import IndexPage from './pages/Index';
 import { LoginPage } from './pages/Login';
 import { JoinPage } from './pages/Join';
 import { NotesIndexPage } from './pages/notes/Index';
+import { IndexPage } from './pages/Index';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

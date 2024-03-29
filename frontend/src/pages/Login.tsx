@@ -1,6 +1,6 @@
 import LoginForm from '@/components/LoginForm';
-import withUnauthenticated from '@/components/hocs/withUnauthenticated';
+import { withUnauthenticated } from '@/components/hocs/withUnauthenticated';
 
-export const LoginPage = () => {
+export const LoginPage = withUnauthenticated(() => {
   return <LoginForm />;
-};
+});
