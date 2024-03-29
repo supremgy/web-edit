@@ -1,24 +1,26 @@
 import { useAuthStore } from '@/store/authStore';
-import useCurrentUser from '@/hooks/useCurrentUser';
 import { ComponentType, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from '@/apis/user';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+interface WithAuthenticatedProps {
+  currentUser: User;
+}
 
-const withAuthenticatedUser = <P extends User>(
-  WrappedComponent: ComponentType<P>
-) => {
-  const Component = () => {
-    const { isLoggedIn } = useAuthStore();
-    const user = useCurrentUser();
+export const withAuthenticatedUser = (
+  Component: React.ComponentType<WithAuthenticatedProps>
+): React.FC => {
+  return () => {
+    const { currentUser } = useCurrentUser();
     const navigate = useNavigate();
 
-    useEffect(() => {
-      if (!isLoggedIn) {
-        navigate('/login');
-      }
-    }, [isLoggedIn, navigate, user]);
-    return <WrappedComponent {...user} {...({} as P)} />;
+    if (!currentUser) {
+      return null;
+    }
+    if (currentUser === 'unauthenticated') {
+      navigate('/login');
+      return null;
+    }
+    return <Component currentUser={currentUser} />;
   };
-  return Component;
 };
-export default withAuthenticatedUser;

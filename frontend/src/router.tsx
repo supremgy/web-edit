@@ -1,24 +1,20 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Login from './pages/Login';
-import Join from './pages/Join';
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 import IndexPage from './pages/Index';
-import NoteIndex from './pages/notes/Index';
+import { LoginPage } from './pages/Login';
+import { JoinPage } from './pages/Join';
+import { NotesIndexPage } from './pages/notes/Index';
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <IndexPage />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/join',
-    element: <Join />,
-  },
-  {
-    path: '/notes',
-    element: <NoteIndex />,
-  },
-]);
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route index Component={IndexPage} />
+      <Route path='/login' Component={LoginPage} />
+      <Route path='/join' Component={JoinPage} />
+      <Route path='/notes' Component={NotesIndexPage} />
+    </>
+  )
+);
