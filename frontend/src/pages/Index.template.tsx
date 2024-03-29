@@ -3,7 +3,7 @@ import { ReactComponent as MussgImage } from '@/assets/mussg.svg';
 
 export const IndexTemplate: React.FC = () => {
   return (
-    <div className='px-24 py-72 text-center flex flex-col items-center'>
+    <div className='p-24 text-center flex flex-col items-center'>
       <MussgImage />
 
       <h1 className='text-5xl font-bold mt-0 mr-0 mb-8'>
