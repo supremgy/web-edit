@@ -16,7 +16,7 @@ const NoteContentEditor = () => {
     editorProps: {
       attributes: {
         class:
-          'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl px-6 mx-auto focus:outline-none',
+          'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl px-6 mx-auto focus:outline-none h-dvh',
       },
     },
   });

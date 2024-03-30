@@ -15,8 +15,8 @@ export const NotesIndexTemplate: React.FC<NotesIndexTemplateProps> = (
   props
 ) => {
   return (
-    <div className='flex flex-row h-full w-full max-w-screen-2xl mx-auto justify-center'>
-      <div className=' basis-1/6 flex flex-col fixed-element w-30 bg-[#e6e6ea]'>
+    <div className='flex  h-dvh w-full max-w-screen-2xl mx-auto justify-center '>
+      <div className=' basis-1/6 flex flex-col w-30 bg-[#e6e6ea] overflow-hidden overflow-y-auto'>
         <div className=' flex items-center p-4 text-xl gap-2'>
           <FaUser />
           <p className='font-semibold'>{props.currentUserMail}</p>
