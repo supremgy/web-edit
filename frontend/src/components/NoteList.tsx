@@ -1,5 +1,4 @@
 import { NoteListProps } from '@/apis/note';
-import SidebarButton from '@/pages/SidebarButton';
 import { FaRegFileLines } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 
@@ -10,7 +9,13 @@ const NoteList = ({ notes }: NoteListProps) => {
       {notes.map((note) => (
         <NavLink
           to={`/notes/${note.id}`}
-          className='flex items-center px-4 py-2 text-base  gap-2 font-semibold text-gray-500'
+          className={({ isActive }) =>
+            `flex items-center p-2 text-base  gap-2 font-semibold ${
+              isActive
+                ? 'text-black  bg-slate-300 rounded-md duration-300'
+                : 'text-gray-500 '
+            } `
+          }
         >
           {<FaRegFileLines />}
           <p>{note.title}</p>
