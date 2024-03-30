@@ -1,7 +1,14 @@
 import Placeholder from '@tiptap/extension-placeholder';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-const NoteContentEditor = () => {
+interface NoteContentEditorProps {
+  content: string;
+  onChangeContent(value: string): void;
+}
+const NoteContentEditor = ({
+  content,
+  onChangeContent,
+}: NoteContentEditorProps) => {
   const extensions = [
     StarterKit,
     Placeholder.configure({
