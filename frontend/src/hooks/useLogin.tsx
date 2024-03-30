@@ -1,25 +1,25 @@
 import { requestLogin } from '@/apis/user';
 import { LoginProps } from '@/components/LoginForm';
 import { useAuthStore } from '@/store/authStore';
-import { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import to from 'await-to-js';
+import { isAxiosError } from 'axios';
 
 export const useLogin = () => {
   const { storeLogin } = useAuthStore();
-  const navigate = useNavigate();
-  const userLogin = (data: LoginProps) => {
-    requestLogin(data)
-      .then((res) => {
-        storeLogin(res.token);
-        alert('로그인 되었습니다.');
-        navigate('/notes');
-      })
-      .catch((err: AxiosError) => {
-        if (err instanceof AxiosError && err.response && err.response.data) {
-          const { message } = err.response.data as { message: string };
-          alert(message);
-        }
-      });
-  };
-  return { userLogin };
+  const loginMutation = useMutation({
+    mutationFn: async (params: LoginProps) => {
+      const [error, data] = await to(requestLogin(params));
+      if (isAxiosError(error) && error.response?.status === 409) {
+        return { result: 'unauthorized' as const };
+      }
+      if (error) {
+        throw error;
+      }
+      storeLogin(data.token);
+      return { result: 'success' as const };
+    },
+  });
+
+  return { login: loginMutation.mutateAsync };
 };

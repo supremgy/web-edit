@@ -1,6 +1,6 @@
 import { useLogin } from '@/hooks/useLogin';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputBoxForm from './InputBoxForm';
 import { JoinFormProps } from './JoinForm';
@@ -16,9 +16,17 @@ const LoginForm = () => {
     getValues,
     watch,
   } = useForm<JoinFormProps>();
-  const { userLogin } = useLogin();
-  const onSubmit = (data: JoinFormProps) => {
-    userLogin(data);
+  const navigate = useNavigate();
+  const { login } = useLogin();
+  const onSubmit = async (data: JoinFormProps) => {
+    const { result } = await login(data);
+
+    if (result === 'unauthorized') {
+      return alert('이메일 또는 비밀번호가 일치하지 않습니다.');
+    } else if (result === 'success') {
+      alert('로그인되었습니다.');
+      return navigate('/notes');
+    }
   };
   watch(['email', 'password']);
 
