@@ -1,6 +1,8 @@
 import { requestJoin } from '@/apis/user';
 import { LoginProps } from '@/components/LoginForm';
-import { AxiosError } from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import to from 'await-to-js';
+import { AxiosError, isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export const useJoin = () => {
@@ -18,5 +20,23 @@ export const useJoin = () => {
         }
       });
   };
-  return { userJoin };
+
+  const joinMutation = useMutation({
+    mutationFn: async (params: LoginProps) => {
+      const [error] = await to(requestJoin(params));
+
+      if (isAxiosError(error) && error.response?.status === 409) {
+        return {
+          result: 'unauthorized' as const,
+          message: error.response.data.message,
+        };
+      }
+      if (error) {
+        throw error;
+      }
+      return { result: 'success' as const };
+    },
+  });
+
+  return { join: joinMutation.mutateAsync };
 };

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, LoginProps } from './LoginForm';
 import { useJoin } from '@/hooks/useJoin';
 import { useForm } from 'react-hook-form';
@@ -9,7 +9,7 @@ export interface JoinFormProps extends LoginProps {
 }
 
 const JoinForm = () => {
-  const { userJoin } = useJoin();
+  // const { userJoin } = useJoin();
   const {
     register,
     handleSubmit,
@@ -17,8 +17,16 @@ const JoinForm = () => {
     getValues,
     watch,
   } = useForm<JoinFormProps>();
-  const onSubmit = (data: LoginProps) => {
-    userJoin(data);
+  const { join } = useJoin();
+  const navigate = useNavigate();
+  const onSubmit = async (data: LoginProps) => {
+    const { result, message } = await join(data);
+    if (result === 'unauthorized') {
+      return alert(message);
+    } else if (result === 'success') {
+      alert('회원가입에 성공하였습니다.');
+      return navigate('/login');
+    }
   };
   watch(['email', 'password', 'checkPassword']);
   return (
