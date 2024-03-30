@@ -1,9 +1,10 @@
-import NoteList, { NoteListProps } from '@/components/NoteList';
+import NoteList from '@/components/NoteList';
 import React from 'react';
 import { FaRegSquarePlus, FaUser } from 'react-icons/fa6';
 import SidebarButton from '../SidebarButton';
 import { FiLogOut } from 'react-icons/fi';
 import Detail from './Detail';
+import { NoteListProps } from '@/apis/note';
 
 export interface NotesIndexTemplateProps extends NoteListProps {
   currentUserMail: string;
@@ -11,9 +12,7 @@ export interface NotesIndexTemplateProps extends NoteListProps {
   onClickCreateNote(): void;
 }
 
-export const NotesIndexTemplate: React.FC<NotesIndexTemplateProps> = (
-  props
-) => {
+export const NotesIndexTemplate = (props: NotesIndexTemplateProps) => {
   return (
     <div className='flex  h-dvh w-full max-w-screen-2xl mx-auto justify-center '>
       <div className=' basis-1/6 flex flex-col w-30 bg-[#e6e6ea] overflow-hidden overflow-y-auto'>

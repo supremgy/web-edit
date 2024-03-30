@@ -32,7 +32,7 @@ export const createContent = (req: Request, res: Response) => {
 export const getList = (req: Request, res: Response) => {
   const userId = req.user.userId;
 
-  const sql = 'SELECT * FROM notes WHERE user_id = ?';
+  const sql = 'SELECT id, title FROM notes WHERE user_id = ?';
   conn.query(sql, userId, (err, results: ResultSetHeader[]) => {
     if (err) {
       console.error('데이터베이스 오류:', err);
