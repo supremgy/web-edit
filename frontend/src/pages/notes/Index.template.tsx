@@ -5,6 +5,7 @@ import SidebarButton from '../SidebarButton';
 import { FiLogOut } from 'react-icons/fi';
 import Detail from './Detail';
 import { NoteListProps } from '@/apis/note';
+import { Outlet } from 'react-router-dom';
 
 export interface NotesIndexTemplateProps extends NoteListProps {
   currentUserMail: string;
@@ -34,7 +35,7 @@ export const NotesIndexTemplate = (props: NotesIndexTemplateProps) => {
       </div>
 
       <div className='basis-5/6 scrollable-element overflow-y-auto'>
-        <Detail />
+        <Outlet />
       </div>
     </div>
   );

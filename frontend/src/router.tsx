@@ -7,6 +7,7 @@ import { LoginPage } from './pages/Login';
 import { JoinPage } from './pages/Join';
 import { NotesIndexPage } from './pages/notes/Index';
 import { IndexPage } from './pages/Index';
+import Detail from './pages/notes/Detail';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,7 +16,7 @@ export const router = createBrowserRouter(
       <Route path='/login' Component={LoginPage} />
       <Route path='/join' Component={JoinPage} />
       <Route path='/notes' Component={NotesIndexPage}>
-        <Route path='/notes:noteId' Component={NotesIndexPage} />
+        <Route path='/notes:noteId' Component={Detail} />
       </Route>
     </>
   )
