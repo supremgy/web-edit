@@ -441,9 +441,6 @@ let noteList: NoteProps[] = [
     updatedAt: '2024-03-25 12:16:53',
   },
 ];
-interface IndexProps {
-  user: User;
-}
 
 export const NotesIndexPage = withAuthenticatedUser((props) => {
   const { userLogout } = useLogout();
