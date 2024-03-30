@@ -19,7 +19,7 @@ export const IndexTemplate: React.FC = () => {
 
       <Link
         to={'/login'}
-        className='inline-block bg-gray-900 text-white rounded-md px-4 py-2 text-base  transition duration-300 ease-in-out hover:bg-gray-800 focus:bg-gray-800 active:bg-gray-700'
+        className='inline-block bg-gray-900 text-white rounded-md px-4 py-2 text-base duration-200 ease-in-out hover:bg-gray-500 focus:bg-gray-800 active:bg-gray-700'
       >
         무료로 시작하기
       </Link>

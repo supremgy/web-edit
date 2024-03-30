@@ -10,11 +10,11 @@ const NoteList = ({ notes }: NoteListProps) => {
         <NavLink
           to={`/notes/${note.id}`}
           className={({ isActive }) =>
-            `flex items-center p-2 text-base  gap-2 font-semibold ${
+            `flex items-center p-2 text-base gap-2 font-semibold ${
               isActive
-                ? 'text-black  bg-slate-300 rounded-md duration-300'
-                : 'text-gray-500 '
-            } `
+                ? 'text-black  bg-sky-300 rounded-md duration-300 hover:text-black hover:bg-sky-300 '
+                : 'text-gray-500 hover:bg-sky-200'
+            }  rounded-md duration-300`
           }
         >
           {<FaRegFileLines />}
