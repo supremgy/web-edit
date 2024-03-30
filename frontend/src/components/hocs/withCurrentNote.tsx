@@ -1,13 +1,20 @@
-import styled from 'styled-components';
+import { Note } from '@/apis/note';
+import { useNote } from '@/hooks/useNote';
+import { ComponentType } from 'react';
+import { useParams } from 'react-router-dom';
 
-const withCurrentNote = () => {
-  return (
-    <div>
-      <h1>withCurrentNote</h1>
-    </div>
-  );
+interface WithCurrentNoteProps {
+  currentNote: Note;
+}
+export const withCurrentNote = (
+  Component: ComponentType<WithCurrentNoteProps>
+) => {
+  return () => {
+    const { noteId } = useParams<'noteId'>();
+    const { note } = useNote(Number(noteId));
+    if (!note) {
+      return null;
+    }
+    return <Component currentNote={note} />;
+  };
 };
-
-const withCurrentNoteStyle = styled.div``;
-
-export default withCurrentNote;
