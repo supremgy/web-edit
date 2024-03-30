@@ -61,8 +61,7 @@ export const login = async (req: Request, res: Response) => {
           sameSite: process.env.NODE_ENV === 'development' ? 'lax' : 'none',
           secure: process.env.NODE_ENV !== 'development',
         });
-        console.log('access-token=' + accessToken);
-        console.log(loginUser);
+        console.log('loginUser: ', loginUser);
 
         return res.status(StatusCodes.OK).json({
           id: loginUser.id,

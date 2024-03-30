@@ -3,13 +3,12 @@ import { StatusCodes } from 'http-status-codes';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export const authenticateUser = //
-  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  async (req: Request, res: Response, next: NextFunction) => {
     const accessToken = req.cookies['access-token'];
-    console.log(accessToken);
 
     const JWT_SECRET = process.env.JWT_SECRET;
     if (!accessToken) {
-      res
+      return res
         .status(StatusCodes.UNAUTHORIZED)
         .json({ message: '토큰정보가 없습니다.' });
     }
