@@ -1,7 +1,10 @@
-import React from 'react';
+import { fetchNote } from '@/apis/note';
+import { useQuery } from '@tanstack/react-query';
 
-const useNote = () => {
-  return <div></div>;
+export const useNote = (noteId: number) => {
+  const noteQuery = useQuery({
+    queryKey: ['note', noteId],
+    queryFn: () => fetchNote(noteId),
+  });
+  return { note: noteQuery.data };
 };
-
-export default useNote;

@@ -2,18 +2,12 @@ import { httpClient } from '@/utils/https';
 export interface NoteListProps {
   notes: { id: number; title: string }[];
 }
-export interface NoteProps {
-  id: number;
-  title: string;
-  content: string;
-  userId: number;
-  createdAt: string;
-  updatedAt: string;
-}
+
 export interface Note {
   id: number;
   title: string;
   content: string;
+  userId: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -22,7 +16,10 @@ const fetchNotes = async () => {
   const { data } = await httpClient.get<FetchNotesResponse>('/notes');
   return data;
 };
-const fetchNote = async () => {};
+const fetchNote = async (noteId: number) => {
+  const { data } = await httpClient.get<Note>(`/notes/${noteId}`);
+  return data;
+};
 const createNote = () => {};
 const updateNote = () => {};
 const deleteNote = () => {};
