@@ -19,7 +19,14 @@ export const createContent = (req: Request, res: Response) => {
     }
 
     if (results.affectedRows === 1) {
-      return res.status(StatusCodes.OK).json(results);
+      return res.status(StatusCodes.CREATED).json({
+        id: results.insertId,
+        title,
+        content,
+        userId,
+        createdAt: date,
+        updatedAt: date,
+      });
     } else {
       console.error('데이터베이스 오류: 영향 받은 행이 1이 아닙니다.');
       return res
@@ -32,7 +39,8 @@ export const createContent = (req: Request, res: Response) => {
 export const getList = (req: Request, res: Response) => {
   const userId = req.user.userId;
 
-  const sql = 'SELECT id, title FROM notes WHERE user_id = ?';
+  const sql =
+    'SELECT id, title FROM notes WHERE user_id = ? ORDER BY created_at DESC';
   conn.query(sql, userId, (err, results: ResultSetHeader[]) => {
     if (err) {
       console.error('데이터베이스 오류:', err);
