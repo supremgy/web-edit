@@ -27,8 +27,13 @@ const createNote = async (params: CreateNoteRequest) => {
 
   return data;
 };
-const updateNote = async (noteId: number) => {
-  const { data } = await httpClient.put(`/notes/${noteId}`);
+export type UpdateNoteRequest = {
+  id: number;
+  title: string;
+  content: string;
+};
+const updateNote = async ({ id, title, content }: UpdateNoteRequest) => {
+  const { data } = await httpClient.put(`/notes/${id}`, { title, content });
   return data;
 };
 const deleteNote = async (noteId: number) => {

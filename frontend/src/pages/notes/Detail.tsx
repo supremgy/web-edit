@@ -2,17 +2,30 @@ import NoteContentEditor from '@/components/NoteContentEditor';
 import NoteTitleInput from '@/components/NoteTitleInput';
 import DetailButton from './DetailButton';
 import { withCurrentNote } from '@/components/hocs/withCurrentNote';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDeleteNote } from '@/hooks/useDeleteNote';
 import { useNavigate } from 'react-router-dom';
+import { useUpdateNote } from '@/hooks/useUpdateNote';
 const Detail = withCurrentNote(({ currentNote }) => {
   const [title, setTitle] = useState(currentNote.title);
   const [content, setContet] = useState(currentNote.content);
   const { deleteNote } = useDeleteNote();
+  const { updateNote } = useUpdateNote();
   const navigate = useNavigate();
-  const handleSave = () => {
-    console.log(title, content);
+  useEffect(() => {
+    setTitle(currentNote.title);
+    setContet(currentNote.content);
+  }, [currentNote]);
+
+  const handleSave = async () => {
+    await updateNote({
+      id: currentNote.id,
+      title: title,
+      content: content,
+    });
+    alert('저장되었습니다.');
   };
+
   const handleDelete = async () => {
     if (!window.confirm('정말로 삭제하시겠습니까?')) return;
     await deleteNote(currentNote.id);

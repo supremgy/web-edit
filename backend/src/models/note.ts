@@ -71,11 +71,12 @@ export const getDetail = (req: Request, res: Response) => {
 };
 
 export const updateContent = (req: Request, res: Response) => {
-  const id = req.params.id;
-  const { content } = req.body;
+  const id = Number(req.params.id);
+  const { title, content } = req.body;
   const updatedAt = new Date();
-  const sql = 'UPDATE notes SET content = ?, updated_at = ? WHERE id = ?';
-  const values = [content, updatedAt, id];
+  const sql =
+    'UPDATE notes SET title = ?, content = ?, updated_at = ? WHERE id = ?';
+  const values = [title, content, updatedAt, id];
   conn.query(sql, values, (err, results: ResultSetHeader) => {
     if (err) {
       console.error('데이터베이스 오류:', err);
@@ -85,7 +86,7 @@ export const updateContent = (req: Request, res: Response) => {
     }
 
     if (results.affectedRows === 1) {
-      return res.status(StatusCodes.OK).json(results);
+      return res.status(StatusCodes.OK).json({ id, title, content });
     }
   });
 };
