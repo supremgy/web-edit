@@ -2,15 +2,13 @@ import NoteContentEditor from '@/components/NoteContentEditor';
 import NoteTitleInput from '@/components/NoteTitleInput';
 import DetailButton from './DetailButton';
 import { withCurrentNote } from '@/components/hocs/withCurrentNote';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 const Detail = withCurrentNote(({ currentNote }) => {
   const [title, setTitle] = useState(currentNote.title);
   const [content, setContet] = useState(currentNote.content);
-  useEffect(() => {
-    setTitle(currentNote.title);
-  }, [currentNote]);
+
   const handleSave = () => {
-    console.log(title);
+    console.log(title, content);
   };
   return (
     <div className='flex-grow w-auto h-full'>
