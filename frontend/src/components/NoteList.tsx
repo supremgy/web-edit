@@ -8,6 +8,7 @@ const NoteList = ({ notes }: NoteListProps) => {
       <p className='pt-3 pl-3 pb-2'>노트 목록</p>
       {notes.map((note) => (
         <NavLink
+          key={note.id}
           to={`/notes/${note.id}`}
           className={({ isActive }) =>
             `flex items-center p-2 text-base gap-2 font-semibold ${
@@ -18,7 +19,7 @@ const NoteList = ({ notes }: NoteListProps) => {
           }
         >
           {<FaRegFileLines />}
-          <p>{note.title}</p>
+          <p>{note.title || '제목 없음'}</p>
         </NavLink>
       ))}
     </div>

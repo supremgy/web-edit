@@ -20,7 +20,13 @@ const fetchNote = async (noteId: number) => {
   const { data } = await httpClient.get<Note>(`/notes/${noteId}`);
   return data;
 };
-const createNote = () => {};
+export type CreateNoteRequest = Pick<Note, 'title' | 'content'>;
+const createNote = async (params: CreateNoteRequest) => {
+  const { data } = await httpClient.post<Note>('/notes', params);
+  console.log(data);
+
+  return data;
+};
 const updateNote = () => {};
 const deleteNote = () => {};
 export { fetchNote, fetchNotes, createNote, updateNote, deleteNote };

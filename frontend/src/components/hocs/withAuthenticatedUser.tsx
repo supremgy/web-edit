@@ -1,5 +1,3 @@
-import { useAuthStore } from '@/store/authStore';
-import { ComponentType, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from '@/apis/user';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
