@@ -27,6 +27,12 @@ const createNote = async (params: CreateNoteRequest) => {
 
   return data;
 };
-const updateNote = () => {};
-const deleteNote = () => {};
+const updateNote = async (noteId: number) => {
+  const { data } = await httpClient.put(`/notes/${noteId}`);
+  return data;
+};
+const deleteNote = async (noteId: number) => {
+  const { data } = await httpClient.delete(`/notes/${noteId}`);
+  return data;
+};
 export { fetchNote, fetchNotes, createNote, updateNote, deleteNote };
