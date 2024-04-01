@@ -15,8 +15,8 @@ export interface NotesIndexTemplateProps extends NoteListProps {
 
 export const NotesIndexTemplate = (props: NotesIndexTemplateProps) => {
   return (
-    <div className='flex  h-dvh w-full max-w-screen-2xl mx-auto justify-center '>
-      <div className=' basis-1/6 flex flex-col w-30 bg-[#e6e6ea] overflow-hidden overflow-y-auto'>
+    <div className='flex h-dvh w-full max-w-screen-2xl mx-auto justify-center '>
+      <div className=' basis-1/6 min-w-80 flex flex-col w-30 bg-noteListBg overflow-hidden overflow-y-auto'>
         <div className=' flex items-center p-4 text-xl gap-2'>
           <FaUser />
           <p className='font-semibold'>{props.currentUserMail}</p>
