@@ -8,13 +8,13 @@ export const useUpdateNote = () => {
   const updateNoteMutate = useMutation({
     mutationFn: updateNote,
     onSuccess: (updatedNote) => {
-      queryClient.setQueryData(['notes'], (notes: FetchNotesResponse) =>
-        notes.map((note) =>
-          note.id === updatedNote.id
-            ? { ...note, title: updatedNote.title }
-            : note
-        )
-      );
+      queryClient.setQueryData(['notes'], (notes: FetchNotesResponse) => {
+        if (notes) {
+          return notes.map((note) =>
+            note.id === updatedNote.id ? { ...note, ...updatedNote } : note
+          );
+        }
+      });
       queryClient.setQueryData(['note', updatedNote.id], () => updatedNote);
     },
   });
