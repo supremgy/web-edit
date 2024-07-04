@@ -11,6 +11,7 @@ export const withUnauthenticated = (Component: ComponentType): React.FC => {
     }
     if (currentUser !== 'unauthenticated') {
       navigate('/notes');
+
       return null;
     }
     return <Component />;
